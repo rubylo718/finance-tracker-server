@@ -3,6 +3,7 @@ const User = require('../models/user-model')
 
 const userController = {
 	addUser: async (req, res, next) => {
+    // #swagger.tags = ['Users']
 		let { name, email, password, checkPassword } = req.body
 		name = name?.trim()
 		email = email?.trim()
