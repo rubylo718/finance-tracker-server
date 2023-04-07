@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 require('./config/mongoose')
 
 const express = require('express')
+const passport = require('passport')
 const indexRoutes = require('./routes/index')
 
 const port = process.env.PORT
@@ -11,6 +12,7 @@ const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(passport.initialize())
 app.use(indexRoutes)
 
 app.listen(port, () => {
