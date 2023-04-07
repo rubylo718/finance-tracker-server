@@ -1,9 +1,10 @@
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const User = require('../models/user-model')
 
 const userController = {
 	addUser: async (req, res, next) => {
-    // #swagger.tags = ['Users']
+		// #swagger.tags = ['Users']
 		let { name, email, password, checkPassword } = req.body
 		name = name?.trim()
 		email = email?.trim()
@@ -43,6 +44,44 @@ const userController = {
 			return res.status(200).json({
 				status: 'success',
 				message: 'User registers successfully.',
+			})
+		} catch (err) {
+			next(err)
+		}
+	},
+	login: async (req, res, next) => {
+		// #swagger.tags = ['Users']
+		try {
+			let { email, password } = req.body
+			if (!email?.trim() || !password?.trim()) {
+				return res.status(400).json({
+					status: 'error',
+					message: 'Lack of info.',
+				})
+			}
+			const user = await User.findOne({ email })
+			if (!user) {
+				return res.status(401).json({
+					status: 'error',
+					message: 'User is not found.',
+				})
+			}
+
+			if (!bcrypt.compareSync(password, user.password)) {
+				return res.status(401).json({
+					status: 'error',
+					message: 'Password incorrect.',
+				})
+			}
+
+			const payload = { id: user.id }
+			const token = jwt.sign(payload, process.env.JWT_SECRET, {
+				expiresIn: '7d',
+			})
+			return res.status(200).json({
+				status: 'success',
+				message: 'Login successfully.',
+				token: token,
 			})
 		} catch (err) {
 			next(err)
