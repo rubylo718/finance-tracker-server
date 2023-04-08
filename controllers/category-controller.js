@@ -19,7 +19,7 @@ const categoryController = {
 		try {
 			let categoryFound = await Category.findById(_id)
 			if (!categoryFound) {
-				return res.status(400).json({ status: 'error', message: 'Not found.' })
+				return res.status(404).json({ status: 'error', message: 'Not found.' })
 			}
 			await Category.deleteOne({ _id })
 			return res.status(200).json({
@@ -45,7 +45,7 @@ const categoryController = {
 		try {
 			let categoryFound = await Category.findById(_id)
 			if (!categoryFound) {
-				return res.status(400).json({ status: 'error', message: 'Not found.' })
+				return res.status(404).json({ status: 'error', message: 'Not found.' })
 			}
 			return res.status(200).json({
 				status: 'success',

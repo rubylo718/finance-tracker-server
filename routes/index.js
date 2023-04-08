@@ -3,7 +3,7 @@ const router = express.Router()
 
 const userRoute = require('./modules/user')
 const categoryRoute = require('./modules/category')
-// const recordRoute = require('./modules/record')
+const recordRoute = require('./modules/record')
 const userController = require('../controllers/user-controller')
 const authenticated = require('../middleware/authCheck')
 
@@ -12,7 +12,7 @@ const swaggerFile = require('../swagger_output.json')
 
 router.use('/users', userRoute)
 router.use('/categories', categoryRoute)
-// router.use('/records', recordRoute)
+router.use('/records', authenticated, recordRoute)
 
 router.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
