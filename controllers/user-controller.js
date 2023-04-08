@@ -87,6 +87,15 @@ const userController = {
 			next(err)
 		}
 	},
+	getCurrentUser: async (req, res) => {
+		const id = req.user.id
+		const user = await User.findById(id, '-password')
+		if (!user)
+			return res
+				.status(404)
+				.json({ status: 'error', message: 'User is not found.' })
+		return res.status(200).json(user)
+	},
 }
 
 module.exports = userController

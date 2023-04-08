@@ -7,6 +7,7 @@ const authenticated = require('../middleware/authCheck')
 const swaggerUi = require('swagger-ui-express')
 const swaggerFile = require('../swagger_output.json')
 
+router.get('/currentUser', authenticated, userController.getCurrentUser)
 router.post('/register', userController.addUser)
 router.post('/login', userController.login)
 
