@@ -88,6 +88,7 @@ const userController = {
 		}
 	},
 	getCurrentUser: async (req, res) => {
+		// #swagger.tags = ['Users']
 		const id = req.user.id
 		const user = await User.findById(id, '-password')
 		if (!user)

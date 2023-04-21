@@ -3,6 +3,7 @@ const Record = require('../models/record-model')
 
 const recordController = {
 	addRecord: async (req, res, next) => {
+		// #swagger.tags = ['Records']
 		const userId = req.user._id
 		const { name, categoryId, amount } = req.body
 		try {
@@ -23,6 +24,7 @@ const recordController = {
 		}
 	},
 	getAllRecords: async (req, res, next) => {
+		// #swagger.tags = ['Records']
 		try {
 			const allRecords = await Record.find()
 				.populate('userId', ['name'])
@@ -37,6 +39,7 @@ const recordController = {
 		}
 	},
 	getRecord: async (req, res, next) => {
+		// #swagger.tags = ['Records']
 		const _id = req.params._id
 		try {
 			const foundRecord = await Record.findById(_id)
@@ -49,6 +52,7 @@ const recordController = {
 		}
 	},
 	deleteRecord: async (req, res, next) => {
+		// #swagger.tags = ['Records']
 		const _id = req.params._id
 		try {
 			const foundRecord = await Record.findById(_id)
@@ -67,6 +71,7 @@ const recordController = {
 		}
 	},
 	editRecord: async (req, res, next) => {
+		// #swagger.tags = ['Records']
 		const _id = req.params._id
 		const { name, categoryId, amount } = req.body
 		try {

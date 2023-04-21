@@ -5,9 +5,26 @@ const doc = {
     title: "Finance Tracker API",
     description: ""
   },
-  host: "localhost:8080",
+  servers: [
+    {
+      url: "https://infinite-atoll-36727.herokuapp.com",
+      description: "heroku server"
+    },    
+    {
+      url: "http://localhost:8080",
+      description: "local server"
+    }
+  ],
   basePath: "/",
   tags: [
+    {
+      name: "Index",
+      description: "Entry page"
+    },
+    {
+      name: "Categories",
+      description: "Category functions"
+    },
     {
       name: "Users",
       description: "User functions"

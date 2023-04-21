@@ -18,6 +18,7 @@ router.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 router.get('/currentUser', authenticated, userController.getCurrentUser)
 router.get('/', authenticated, (req, res) => {
+	// #swagger.tags = ['Index']
 	res.send('welcome')
 })
 

@@ -2,6 +2,7 @@ const Category = require('../models/category-model')
 
 const categoryController = {
 	addCategory: async (req, res, next) => {
+		// #swagger.tags = ['Categories']
 		let { categoryId, name } = req.body
 		try {
 			const newCategory = await Category.create({ categoryId, name })
@@ -15,6 +16,7 @@ const categoryController = {
 		}
 	},
 	deleteCategory: async (req, res, next) => {
+		// #swagger.tags = ['Categories']
 		let _id = req.params._id
 		try {
 			let categoryFound = await Category.findById(_id)
@@ -30,6 +32,7 @@ const categoryController = {
 		}
 	},
 	getAllCategories: async (req, res, next) => {
+		// #swagger.tags = ['Categories']
 		try {
 			const allCategories = await Category.find().lean()
 			return res.status(200).json({
@@ -41,6 +44,7 @@ const categoryController = {
 		}
 	},
 	getCategory: async (req, res, next) => {
+		// #swagger.tags = ['Categories']
 		let _id = req.params._id
 		try {
 			let categoryFound = await Category.findById(_id)
@@ -56,6 +60,7 @@ const categoryController = {
 		}
 	},
 	editCategory: async (req, res, next) => {
+		// #swagger.tags = ['Categories']
 		let _id = req.params._id
 		let { categoryId, name } = req.body
 		try {
